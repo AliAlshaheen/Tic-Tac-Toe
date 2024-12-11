@@ -4,15 +4,15 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Light Mode */
+/* Light Mode: white to orange gradient */
 body.light-mode {
-  background: #f0f0f0;
+  background: linear-gradient(to bottom, #ffffff, #ff9f1c);
   color: #333;
 }
 
-/* Dark Mode */
+/* Dark Mode: black to darker orange gradient */
 body.dark-mode {
-  background: #1e1e1e;
+  background: linear-gradient(to bottom, #000000, #ff6600);
   color: #f0f0f0;
 }
 
@@ -88,15 +88,55 @@ main {
   margin-bottom: 2rem;
 }
 
+.difficulty label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
 .difficulty select {
   padding: 0.5rem;
   font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .difficulty select {
+  background: #333;
+  color: #fff;
+}
+
+.difficulty select:hover {
+  background-color: #ffe5cc;
+}
+
+body.dark-mode .difficulty select:hover {
+  background-color: #444;
 }
 
 #resetBtn {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(to right, #ff9f1c, #ff7a00);
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#resetBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode #resetBtn {
+  background: linear-gradient(to right, #ff6600, #ff3d00);
 }
 
 .board {
@@ -110,7 +150,7 @@ main {
 .cell {
   width: 100px;
   height: 100px;
-  background-color: #eaeaea;
+  background-color: rgba(255, 255, 255, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,28 +158,38 @@ main {
   cursor: pointer;
   user-select: none;
   border-radius: 10px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s;
+  font-weight: bold;
 }
 
 body.dark-mode .cell {
-  background-color: #333;
+  background-color: rgba(51, 51, 51, 0.8);
+  color: #fff;
 }
 
 .cell:hover {
-  background-color: #ddd;
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.03);
 }
+
 body.dark-mode .cell:hover {
-  background-color: #444;
+  background-color: rgba(51, 51, 51, 0.6);
 }
 
 .status {
   text-align: center;
   font-size: 1.25rem;
   font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 footer {
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: underline;
 }
