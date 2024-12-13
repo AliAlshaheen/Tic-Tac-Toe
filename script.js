@@ -8,7 +8,6 @@ const modeToggle = document.getElementById("mode-toggle");
 const boardEl = document.querySelector(".board");
 const canvas = document.getElementById("winning-line");
 const ctx = canvas.getContext("2d");
-
 let board = Array(9).fill("");
 let gameActive = true;
 let playerScore = 0;
@@ -16,25 +15,18 @@ let computerScore = 0;
 let drawScore = 0;
 let humanTurn = true;
 let difficulty = "easy";
-
 difficultySelect.addEventListener("change", (e) => {
   difficulty = e.target.value;
   resetGame();
 });
-
-modeToggle.addEventListener("click", () => {
+modeToggle.addEventListener("change", () => {
   document.documentElement.dataset.theme =
     document.documentElement.dataset.theme === "light" ? "dark" : "light";
-  modeToggle.textContent =
-    document.documentElement.dataset.theme === "light" ? "☀️" : "🌙";
 });
-
 resetBtn.addEventListener("click", resetGame);
-
 cells.forEach((cell) => {
   cell.addEventListener("click", handleCellClick, { passive: true });
 });
-
 function handleCellClick(e) {
   if (!gameActive) return;
   if (!humanTurn) return;
@@ -54,7 +46,6 @@ function handleCellClick(e) {
     humanTurn = true;
   }, 500);
 }
-
 function computerMove() {
   if (!gameActive) return;
   let move;
@@ -68,14 +59,12 @@ function computerMove() {
     endGame("draw");
   }
 }
-
 function makeMove(index, player) {
   board[index] = player;
   const cell = document.querySelector(`.cell[data-index='${index}']`);
   cell.textContent = player;
   cell.classList.add(player);
 }
-
 function checkWin(player) {
   const w = [
     [0, 1, 2],
@@ -96,11 +85,9 @@ function checkWin(player) {
   }
   return false;
 }
-
 function isDraw() {
   return board.every((cell) => cell !== "");
 }
-
 function endGame(result) {
   gameActive = false;
   if (result === "X") {
@@ -114,7 +101,6 @@ function endGame(result) {
     drawScoreEl.textContent = drawScore;
   }
 }
-
 function resetGame() {
   board.fill("");
   cells.forEach((cell) => {
@@ -125,7 +111,6 @@ function resetGame() {
   humanTurn = true;
   clearWinningLine();
 }
-
 function getRandomMove() {
   const available = board
     .map((v, i) => (v === "" ? i : null))
@@ -133,7 +118,6 @@ function getRandomMove() {
   const r = Math.floor(Math.random() * available.length);
   return available[r];
 }
-
 function getMediumMove() {
   let m = findBestImmediateMove("O");
   if (m !== null) return m;
@@ -141,7 +125,6 @@ function getMediumMove() {
   if (m !== null) return m;
   return getRandomMove();
 }
-
 function findBestImmediateMove(player) {
   const w = [
     [0, 1, 2],
@@ -165,7 +148,6 @@ function findBestImmediateMove(player) {
   }
   return null;
 }
-
 function getBestMove(newBoard, player) {
   if (checkTerminalState(newBoard, "X")) return scoreMove(newBoard, "X", "O");
   if (checkTerminalState(newBoard, "O")) return scoreMove(newBoard, "O", "X");
@@ -178,11 +160,8 @@ function getBestMove(newBoard, player) {
     let boardCopy = [...newBoard];
     boardCopy[spot] = player;
     let result;
-    if (player === "O") {
-      result = getBestMove(boardCopy, "X");
-    } else {
-      result = getBestMove(boardCopy, "O");
-    }
+    if (player === "O") result = getBestMove(boardCopy, "X");
+    else result = getBestMove(boardCopy, "O");
     moves.push({ index: spot, score: result.score });
   }
   let bestMove;
@@ -205,7 +184,6 @@ function getBestMove(newBoard, player) {
   }
   return bestMove;
 }
-
 function checkTerminalState(testBoard, player) {
   const w = [
     [0, 1, 2],
@@ -228,14 +206,12 @@ function checkTerminalState(testBoard, player) {
   }
   return false;
 }
-
 function scoreMove(testBoard, player, opponent) {
   if (checkTerminalState(testBoard, player)) {
     return player === "O" ? { score: 10 } : { score: -10 };
   }
   return { score: 0 };
 }
-
 function drawWinningLine(a, b, c) {
   const boardRect = boardEl.getBoundingClientRect();
   canvas.width = boardRect.width;
@@ -272,7 +248,6 @@ function drawWinningLine(a, b, c) {
   }
   animateLine();
 }
-
 function clearWinningLine() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }

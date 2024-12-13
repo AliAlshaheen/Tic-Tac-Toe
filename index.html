@@ -4,19 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic-Tac-Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="header">
       <h1 class="title">Tic-Tac-Toe</h1>
       <div class="controls">
-        <label for="difficulty">Difficulty:</label>
-        <select id="difficulty">
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-        <button id="mode-toggle" aria-label="Toggle Dark/Light Mode">☀️</button>
+        <div class="select-container">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="toggle-container">
+          <input
+            type="checkbox"
+            id="mode-toggle"
+            aria-label="Toggle Dark/Light Mode"
+          />
+          <label for="mode-toggle" class="toggle-label"></label>
+        </div>
       </div>
     </header>
     <section class="scoreboard">
@@ -46,9 +61,9 @@
     <footer class="footer">
       <p>
         Made With Love -
-        <a href="https://github.com/AliAlshaheen/Tic-Tac-Toe" target="_blank"
-          >AliAlshaheen/Tic-Tac-Toe</a
-        >
+        <a href="https://github.com/AliAlshaheen/Tic-Tac-Toe" target="_blank">
+          AliAlshaheen/Tic-Tac-Toe
+        </a>
       </p>
     </footer>
     <script src="script.js"></script>
